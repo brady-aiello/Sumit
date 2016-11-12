@@ -1,5 +1,8 @@
 package com.example.android.challenge;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -14,12 +18,27 @@ import java.util.List;
 
 public class ChallengeActivity extends AppCompatActivity {
     List<Challenge> challengeList;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case(R.id.nav_profile):
+                        // launch new intent instead of loading fragment
+                        startActivity(new Intent(ChallengeActivity.this, ProfileActivity.class));
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                }
+                return false;
+            }
+        });
         Field mDragger;
         Field mEdgeSize;
         try {
