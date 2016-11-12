@@ -27,4 +27,20 @@ public class ChallengeViewHolder extends RecyclerView.ViewHolder {
         challengeView.setPeakName(this.peakName);
         challengeView.setStars(this.difficultyRating);
     }
+
+    public ChallengeView getChallengeView() {
+        return challengeView;
+    }
+
+    public int getDifficultyRating() {
+        return difficultyRating;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public String getPeakName() {
+        return peakName;
+    }
 }

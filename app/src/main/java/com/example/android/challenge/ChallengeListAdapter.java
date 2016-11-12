@@ -1,6 +1,7 @@
 package com.example.android.challenge;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -44,6 +45,18 @@ public class ChallengeListAdapter extends RecyclerView.Adapter<ChallengeViewHold
                 actionMode = listActivity.startSupportActionMode(actionCallBack);
                 selected_position = holder.getAdapterPosition();
                 return true;
+            }
+        });
+        holder.challengeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ChallengeDescriptionActivity.class);
+                intent.putExtra("rating", holder.getDifficultyRating());
+                intent.putExtra("peakName", holder.getPeakName());
+                intent.putExtra("distance", holder.getDistance());
+
+                context.startActivity(intent);
             }
         });
         holder.bind(challenge);

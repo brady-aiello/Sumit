@@ -2,6 +2,7 @@ package com.example.android.challenge;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -90,5 +92,15 @@ public class ChallengeActivity extends AppCompatActivity {
 
         ChallengeListAdapter challengeListAdapter = new ChallengeListAdapter(this, challengeList, this);
         recyclerView.setAdapter(challengeListAdapter);
+//
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.collapsing_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collaping_toolbar_layout);
+        collapsingToolbar.setTitle("San Luis Obispo");
+
+        //loadBackdrop();
     }
 }
